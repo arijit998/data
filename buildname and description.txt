@@ -1,0 +1,18 @@
+pipeline{
+    agent any
+    stages{
+        stage("ansi"){
+            steps{
+                script{
+                    currentBuild.displayName="arijit 2"
+                    currentBuild.description="this is for deployment purpose"
+                }
+                ansiColor('xterm'){
+                    echo "hello world"
+                }
+                    
+            }
+        }
+    }
+}
+...........chage buil name AND description..............

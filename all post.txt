@@ -1,0 +1,100 @@
+pipeline{
+    agent any
+    stages{
+        stage("fail"){
+            steps{
+                echo "uuioo"
+            }
+        }
+    }
+     post{
+            always{
+                echo "always print"
+            }
+            changed{
+                echo "echnags is there"
+            }
+            fixed{
+                echo "we fixed it"
+            }
+        }
+}
+.............post always,changed,fixed....................
+pipeline{
+    agent any
+    stages{
+        stage("triggre"){
+            steps{
+               script{
+                    result=build(job:"batch 1",propagate: false).result
+                    build("fail-fast")
+                    if (result=="SUCCESS"){
+                        currentBuild.result="ABORTED"
+                    } 
+               }
+                
+            }
+        }
+    }
+    post{
+        aborted{
+            echo "trigger this"
+        }
+    }
+}
+.............aborted................................................
+pipeline{
+    agent any
+    stages{
+        stage("triggre"){
+            steps{
+               script{
+                    result=build(job:"batch 1",propagate: false).result
+                    build("fail-fast")
+                    if (result=="SUCCESS"){
+                        currentBuild.result="UNSTABLE"
+                    } 
+               }
+                
+            }
+        }
+    }
+    post{
+        unstable{
+            echo "trigger this"
+        }
+    }
+}
+.......................unstable,...........
+pipeline{
+    agent any
+    stages{
+        stage("fail"){
+            steps{
+                eho "8900-0"
+            }
+        }
+    }
+    post{
+        regression{
+            echo "faild this"
+        }
+    }
+}
+....................trigger if failed...............
+pipeline{
+    agent any
+    stages{
+        stage("fail"){
+            steps{
+                echo "8900-0"
+            }
+        }
+    }
+    post{
+        cleanup{
+            echo "i am cleaning all"
+        }
+    }
+}
+.....................................clean workspace...................................

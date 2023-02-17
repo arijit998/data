@@ -1,0 +1,59 @@
+pipeline{
+    agent any
+    parameters{
+        file(name:"file",description:"choose a file")
+        string (name:"name",defaultValue:"arijit",description:"type ur name")
+        text(name:"description",defaultValue:"null",description:"describe in 500 words")
+        choice(name:"choose",choices:["dev","test","deploy"],description:"choose any one")
+        password(name:"password",defaultValue:"arhitn",description:"type it")
+        booleanParam(name:"bool",defaultValue:true,description:"check it")
+    }
+    stages{
+        stage("para"){
+            steps{
+                echo "$params.file"
+            }
+        }
+        stage("para1"){
+            steps{
+                script{
+                    if (params.name=="arijit"){
+                        echo "you r authentiocvated"
+                    }
+                    else{
+                        echo "wrong person"
+                    }
+                }
+            }
+        }
+        stage("para2"){
+            steps{
+                echo "$params.description"
+            }
+        }
+        stage("para3"){
+            steps{
+                echo "$params.choose"
+            }
+        }
+        stage("para4"){
+            steps{
+                echo "$params.password"
+            }
+        }
+        stage(para5){
+            steps{
+                script{
+                    if(params.bool==true){
+                         echo "true thuis is "
+                    }
+                    else{
+                         echo "wrong this is "
+                    }
+                   
+                }
+            }
+        }
+    }
+}
+....................

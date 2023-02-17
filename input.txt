@@ -1,0 +1,66 @@
+pipeline{
+    agent any
+    stages{
+        stage("inpur"){
+            steps{
+                wrap([$class: "BuildUser"]){
+                echo "$BUILD_USER"
+                }
+            }
+        }
+    }
+}
+........................make a use define function...............
+pipeline{
+    agent any
+    stages{
+        stage("inpur"){
+            steps{
+                wrap([$class: "BuildUser"]){
+                    script{
+                        name="$BUILD_USER"
+                        echo "$name"
+                        if(name=="pankaj"){
+                            echo "right pesrson"
+                        }
+                        else{
+                            echo "wrong pesrson"
+                        }
+                    }
+              
+                }
+            }
+        }
+    }
+}
+..........chech right person or not........................................
+
+pipeline{
+    agent any
+    stages{
+        stage("chech"){
+            steps{
+                input("check the o/p % and procced or aborted")
+            }
+        }
+    }
+}
+...........chech test result then proccess or abort.................................
+pipeline{
+    agent any
+    stages{
+        stage("pro"){
+            input{
+                message "press ok continue"
+                submitter "arijit ,dey"
+                parameters{
+                    string(name:"user",description:"enter the lead name only lead procced this")
+                }
+            }
+            steps{
+                echo "$user this is"
+            }
+        }
+    }
+}
+..............check who approved the build...................................

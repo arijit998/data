@@ -1,0 +1,48 @@
+pipeline{
+    agent any
+    environment{
+        user="arijit dey"
+    }
+    stages{
+        stage("when"){
+            when{
+                equals expected: "arijit",actual:"$user"
+            }
+            steps{
+                echo "right u are"
+            }
+        }
+        stage("not"){
+            when{
+                not{
+                    environment name:"user",value:"arijit"
+                }
+            }
+            steps{
+                echo "u r not"
+            }
+        }
+    }
+}
+...........................................it check user is real or not.............
+pipeline{
+    agent any
+    stages{
+        stage("1st"){
+            steps{
+                echo "arijit"
+            }
+        }
+        stage("trigger"){
+            when{
+                expression{
+                    currentBuild.getPreviousBuild().result=="SUCCESS"
+                }
+            }
+            steps{
+                echo "trigger 2nd"
+            }
+        }
+    }
+}
+.......................trigger 2nd stage............................

@@ -1,0 +1,54 @@
+pipeline{
+    agent any
+    stages{
+        stage("job"){
+                parallel{
+                stage("job1"){
+                    steps{
+                        echo "arijit dey"
+                    }
+                }
+                stage("job2"){
+                    steps{
+                        echo "electrical engineer"
+                    }
+                }
+                stage("job3"){
+                    steps{
+                        echo "devops"
+                    }
+                }
+            }
+        }
+    }
+}
+..................
+pipeline{
+    agent any
+    stages{
+        stage("job"){
+            failFast true
+                parallel{
+                stage("job1"){
+                    steps{
+                        echo "arijit dey"
+                        sleep 3
+                    }
+                }
+                stage("job2"){
+                    steps{
+                        echo "electrical engineer"
+                        sleep 2
+                    }
+                }
+                stage("job3"){
+                    steps{
+                        echo "devops"
+                        sleep 3
+                    }
+                }
+            }
+        }
+    }
+}
+.........................fail fast

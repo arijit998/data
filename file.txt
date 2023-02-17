@@ -1,0 +1,12 @@
+pipeline{
+    agent any
+    stages{
+        stage("clws"){
+            steps{
+                writeFile file:"ari.txt",text:"i am an electrical enginer and devops"
+                archiveArtifacts "*txt"
+            }
+        }
+    }
+}
+.........................file 

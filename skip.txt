@@ -1,0 +1,22 @@
+pipeline{
+    agent any
+    stages{
+        stage("skip"){
+            steps{
+                echo "arijit dey my name"
+            }
+        }
+        stage("triggr"){
+            when{
+                expression{
+                    return false
+                    currentBuild.getPreviousBuild().result=="SUCCESS"
+                }
+            }
+            steps{
+                echo "skip  it"
+            }
+        }
+    }
+}
+..................skip 2nd stage................

@@ -1,0 +1,17 @@
+pipeline{
+    agent any
+    environment{
+        dey=credentials("vip")
+    }
+    parameters{
+        password(name:"pwd",defaultValue:"arijit")
+    }
+    stages{
+        stage("cre"){
+            steps{
+                echo "$dey"
+            }
+        }
+    }
+}
+................password and credentials..................

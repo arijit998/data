@@ -1,0 +1,20 @@
+pipeline{
+    agent any
+    environment{
+        name= "arijit de"
+    }
+    stages{
+        stage("condi"){
+            steps{
+                script{
+                    if(name=="arijit dey"){
+                        echo "right person"
+                    }
+                    else{
+                        echo "wrong person"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,81 @@
+pipeline{
+    agent any
+    environment{
+        tool="arijit"
+    }
+    stages{
+        stage("var"){
+            steps{
+                echo "my namy is : $tool"
+            }
+        }
+    }
+}
+
+...................................my name is arijit...........................
+pipeline{
+    agent any
+    environment{
+        tool="arijit"
+    }
+    stages{
+        stage("var"){
+            environment{
+                tool="avijit"
+            }
+            steps{
+                script{
+                        tool="basak"
+                }
+                echo "my namy is : $tool"
+            }
+        }
+    }
+}
+.......my name is basak.......................................
+
+pipeline{
+    agent any
+    environment{
+        tool="arijit"
+    }
+    stages{
+        stage("var"){
+            environment{
+                tool="avijit"
+            }
+            steps{
+                script{
+                        tool="basak"
+                }
+                echo "my namy is : $tool $env.tool"
+            }
+        }
+    }
+}
+......................my name is basak avijit..................
+pipeline{
+    agent any
+    stages{
+        stage("prio"){
+            steps{
+                echo "$BUILD_NUMBER $JOB_NAME  $NODE_NAME"
+            }
+        }
+    }
+}
+....................................
+pipeline{
+    agent any
+    environment{
+        BUILD_NUMBER="arijit"
+    }
+    stages{
+        stage("prio"){
+            steps{
+                echo "$BUILD_NUMBER"
+            }
+        }
+    }
+}
+...................................

@@ -1,0 +1,14 @@
+pipeline{
+    agent any
+    stages{
+        stage("basic"){
+            steps{
+                script{
+                    echo "hello arijit"
+                }
+            }
+        }
+    }
+}
+................................................
+

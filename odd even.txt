@@ -1,0 +1,44 @@
+pipeline{
+    agent any
+    environment{
+        name="ARIJIT"
+    }
+    stages{
+        stage("condi"){
+            steps{
+                script{
+                    int rt="$BUILD_NUMBER"
+                    if(rt%2==0){
+                        echo "right person"
+                    }
+                    else{
+                        echo "wrong person"
+                    }
+                }
+            }
+        }
+    }
+}
+.............................................odd even....................
+pipeline{
+    agent any
+    environment{
+        name="$BUILD_NUMBER"
+    }
+    stages{
+        stage("condi"){
+            steps{
+                script{
+                    int rt="$name"
+                    if(rt%2==0){
+                        echo "right person"
+                    }
+                    else{
+                        echo "wrong person"
+                    }
+                }
+            }
+        }
+    }
+}
+.....................................................................................

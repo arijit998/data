@@ -1,0 +1,17 @@
+pipeline{
+    agent any
+    environment{
+        fst="arijit"
+        last="dey"
+    }
+    stages{
+        stage("concat"){
+            steps{
+              script{
+                  name=fst+" "+last
+                  echo "$name"
+              }  
+            }
+        }
+    }
+}

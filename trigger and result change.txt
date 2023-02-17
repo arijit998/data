@@ -1,0 +1,58 @@
+pipeline{
+    agent any
+    stages{
+        stage("triggre"){
+            steps{
+                build("fail-fast")
+            }
+        }
+    }
+}
+.....................trigger job with job name..................
+pipeline{
+    agent any
+    stages{
+        stage("triggre"){
+            steps{
+                build(job:"post",propagate: false)
+                build("fail-fast")
+                
+            }
+        }
+    }
+}
+............if job 1 fail then job 2 trigger............
+pipeline{
+    agent any
+    stages{
+        stage("triggre"){
+            steps{
+               script{
+                    result=build(job:"post",propagate: false).result
+                    build("fail-fast")
+                    if (result=="SUCCESS"){
+                        currentBuild.result="UNSTABLE"
+                    } 
+               }
+                
+            }
+        }
+    }
+}
+.............result is success but i show unstable.................
+pipeline{
+    agent any
+    stages{
+        stage("para"){
+            steps{
+                build(job:"parameter",
+                parameters:
+                [text(name:"description",defaultValue:"type any thing",description:"describe in 500 words"),
+                string (name:"name",defaultValue:"jenkins",description:"type tool name")
+                ]
+                )
+            }
+        }
+    }
+}
+.........................trigger parametr..............

@@ -1,0 +1,36 @@
+pipeline{
+    agent any
+    tools{
+        maven "arijit"
+    }
+    stages{
+        stage("tool"){
+            steps{
+                bat "mvn --version"
+            }
+        }
+    }
+}
+.................here we change the maven version................
+pipeline{
+    agent any
+    tools{
+        maven "arijit"
+    }
+    stages{
+        stage("tool"){
+            steps{
+                bat "mvn --version"
+            }
+        }
+        stage("tool2"){
+            tools{
+                maven "ari"
+            }
+            steps{
+                bat "mvn --version"
+            }
+        }
+    }
+}
+...........run 2 maven version........................................

@@ -1,0 +1,15 @@
+pipeline{
+    agent any
+    stages{
+        stage("loop"){
+            steps{
+                script{
+                    for(i=0;i<=7;i++){
+                        println(i)
+                    }
+                }
+            }
+        }
+    }
+}
+.......................................for loop.........................

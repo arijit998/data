@@ -1,0 +1,33 @@
+pipeline{
+    agent any
+    environment{
+        user1="arijit"
+        user2="ram"
+    }
+    stages{
+        stage("All"){
+            when{
+                allOf{
+                    equals expected:"arijit",actual:"$user1"  
+                    equals expected:"ram",actual:"$user2" 
+                }
+                
+            }
+             steps{
+                 echo "all of this right"
+             } 
+        }
+        stage("any"){
+            when{
+                anyOf{
+                    equals expected:"arijit",actual:"$user1"  
+                    equals expected:"ramu",actual:"$user2" 
+                }
+            }
+            steps{
+                echo "any ofb them"
+            }
+        }
+    }
+}
+.....................all of any.......................

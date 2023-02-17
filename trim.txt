@@ -1,0 +1,17 @@
+pipeline{
+    agent any
+    stages{
+        stage("trom"){
+            steps{
+                script{
+                    tool="arijit dey"
+                    a=tool[0..2]
+                    b=tool[3..7]
+                }
+                 echo "$a"
+                 echo "$b"
+            }
+        }
+    }
+}
+..............................trim................
